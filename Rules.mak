@@ -130,6 +130,8 @@ endif
 GEN_CXXFLAGS:=-nostdinc++
 GEN_CXXFLAGS+=$(call check_gxx_visibility)
 CXXFLAGS:=$(CFLAGS)
+# AWH - For newer GCC compilers
+CXXFLAGS+=-std=c++11
 
 LIBGCC:=$(shell $(CC) -print-libgcc-file-name)
 LIBGCC_DIR:=$(dir $(LIBGCC))
