@@ -70,7 +70,7 @@ $(SHARED_FULLNAME): libgcc_eh libsupc $(EXOBJS)
 clean:
 	$(MAKE) -C abi/libgcc_eh clean
 	$(MAKE) -C abi/libsupc clean
-	$(RM) *.o abi/*.o libuClibc++* core
+	$(RM) *.o abi/*.o libuclibc++* core
 
 %.o: %.cpp $(TOPDIR)bin/g++-uc
 	$(WR_CXX) $(CXXFLAGS) -o $@ -c $<

@@ -294,10 +294,10 @@ config UCLIBCXX_RUNTIME_BIN_SUBDIR
 	 applications headers into /bin
 
 
-
+# AWH - Disable exceptions
 config UCLIBCXX_EXCEPTION_SUPPORT
 	bool "Exception and RTTI support"
-	default y
+	default n
 	help
 	  This option enables exception support in the library.
 	  Exception support is part of the C++ standard, and as such

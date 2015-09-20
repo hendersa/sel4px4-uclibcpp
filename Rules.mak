@@ -21,9 +21,9 @@
 # This file and most of the menuconfiguration system have been taken wholesle from
 # the uClibc package availalble at www.uclibc.org
 
-ifndef CROSS
-CROSS=
-endif
+#ifndef CROSS
+CROSS=$(CROSS_COMPILE)
+#endif
 CC= $(CROSS)gcc
 CXX= $(CROSS)g++
 AR= $(CROSS)ar
@@ -58,8 +58,8 @@ VERSION:=$(MAJOR_VERSION).$(MINOR_VERSION).$(SUBLEVEL)
 # export MAJOR_VERSION MINOR_VERSION SUBLEVEL VERSION LC_ALL
 export MAJOR_VERSION MINOR_VERSION SUBLEVEL VERSION 
 
-LNAME:=uClibc++
-LIBNAME:=libuClibc++
+LNAME:=uclibc++
+LIBNAME:=libuclibc++
 SHARED_FULLNAME:=$(LIBNAME)-$(MAJOR_VERSION).$(MINOR_VERSION).$(SUBLEVEL).so
 SHARED_MAJORNAME:=$(LIBNAME).so.$(MAJOR_VERSION)
 

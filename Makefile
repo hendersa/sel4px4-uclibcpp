@@ -16,6 +16,7 @@ noconfig_targets := menuconfig config oldconfig silentoldconfig randconfig \
 
 # AWH - Added SOURCE_DIR
 TOPDIR=$(SOURCE_DIR)/
+
 TEMP_TOPDIR=$(TOPDIR)
 include $(TOPDIR)Rules.mak
 
@@ -24,6 +25,7 @@ all: headers
 		$(MAKE) -C $$dir all; \
 	done;
 	@cp $(TEMP_TOPDIR)/src/*.a .
+	@cp $(TEMP_TOPDIR)/src/*.a $(STAGE_DIR)/lib
 
 tests: all
 	$(MAKE) -C $(TOPDIR)/tests all

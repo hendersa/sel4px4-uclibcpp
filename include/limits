@@ -114,8 +114,13 @@ public:
 	static const int radix;
 	static const int digits;
 	static const int digits10;
+#if 1 /* AWH - Fixes based on GCC headers to fix eigen lib compile */
+	static constexpr bool is_signed = false;
+	static constexpr bool is_integer = false;
+#else
 	static const bool is_signed;
 	static const bool is_integer;
+#endif /* AWH */
 	static const bool is_exact;
 	static const bool traps;
 	static const bool is_modulo;

@@ -21,6 +21,11 @@
 
 #include <ostream>
 
+#if 1 /* AWH */
+#include <stdio.h>
+#include <stdarg.h>
+#endif /* AWH */
+
 namespace std{
 	
 
@@ -63,3 +68,47 @@ namespace std{
 
 
 }
+
+#if 1 /* AWH - Missing these funcs for _FORTIFY_CHECK */
+int __vfprintf_chk(FILE *f, int flag, const char *fmt, va_list ap)
+{
+	return vfprintf(f, fmt, ap);
+}
+int __vsnprintf_chk(char *s, size_t n, int flag, size_t size, const char *fmt, va_list ap)
+{
+	return vsnprintf(s, n, fmt, ap);
+}
+int __vsprintf_chk(char *s, int flag, size_t size, const char *fmt, va_list ap)
+{
+	return vsprintf(s, fmt, ap);
+}
+int __snprintf_chk(
+        char *dest,
+        size_t supplied_size,
+        int flags,
+        size_t dest_len_from_compiler,
+        const char *format, ...)
+{
+    va_list va;
+    int retval;
+
+    va_start(va, format);
+    retval = __vsnprintf_chk(dest, supplied_size, flags,
+                             dest_len_from_compiler, format, va);
+    va_end(va);
+
+    return retval;
+}
+int __fprintf_chk(FILE *stream, int flags, const char *format, ...)
+{
+    va_list arg;
+    int rv;
+
+    va_start(arg, format);
+    rv = vfprintf(stream, format, arg);
+    va_end(arg);
+
+    return rv;
+}
+#endif /* AWH */
+
